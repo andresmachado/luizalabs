@@ -15,3 +15,6 @@ You need to pass your requests through a x-www-form-urlencoded form or JSON obje
 
 ### To delete a specific user
 > DELETE http://localhost:8000/person/:facebook_id
+
+### OBS:
+I can't get username from Facebook, since they deprecated this field on its API versions greater than v2.0
