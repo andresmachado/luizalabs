@@ -1,2 +1,5 @@
 # luizalabs
-Repository from Luizalabs job challenge
+
+### How to run the project
+You can run the project on UNIX systems with (Virtualenv recommended)
+> make build
