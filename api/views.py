@@ -1,8 +1,10 @@
+"""API Views."""
 import facebook
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions, status, serializers
 from django.shortcuts import get_object_or_404
+from django.http.response import Http404
 from .serializers import PersonSerializer
 from .models import Person
 from .utils import get_facebook_obj
@@ -46,11 +48,21 @@ class PersonView(APIView):
 
         :return: A representation of created object.
         """
+        # import ipdb; ipdb.set_trace()
         data = {}
         facebook_id = request.data.get('facebookId')
 
         if not facebook_id:
             raise serializers.ValidationError('Informe o facebookID')
+
+        try:
+            instance = self.get_object(facebook_id)
+        except Http404:
+            instance = None
+
+        if instance:
+            serializer = self.serializer_class(instance=instance)
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
         try:
             facebook_user_info = get_facebook_obj(facebook_id)

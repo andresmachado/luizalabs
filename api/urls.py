@@ -18,6 +18,6 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^v1/person/$', views.PersonView.as_view(), name='person'),
-    url(r'^v1/person/(?P<person>\w+)$', views.PersonView.as_view(), name='person'),
+    url(r'^person/$', views.PersonView.as_view(), name='person'),
+    url(r'^person/(?P<person>\w+)$', views.PersonView.as_view(), name='person'),
 ]
